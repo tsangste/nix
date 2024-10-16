@@ -30,13 +30,18 @@
             "awscli"
             "checkov"
             "helm"
+            "kubectl"
             "mas"
             "pre-commit"
             "terraform-docs"
             "tfenv"
             "tflint"
           ];
-        casks = [];
+        casks =
+          [
+            "1password"
+            "docker"
+          ];
         masApps = {
           "Xcode" = 497799835;
         };
