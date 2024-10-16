@@ -40,6 +40,8 @@
         masApps = {
           "Xcode" = 497799835;
         };
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
       };
 
       fonts.packages =
