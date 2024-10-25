@@ -47,6 +47,7 @@
         masApps = {
           "Xcode" = 497799835;
         };
+        onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
         onActivation.upgrade = true;
       };
