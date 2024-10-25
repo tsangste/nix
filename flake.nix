@@ -19,7 +19,6 @@
       environment.systemPackages =
         [
           pkgs.mkalias
-          pkgs.obsidian
           pkgs.vim
         ];
 
@@ -41,6 +40,7 @@
           [
             "1password"
             "docker"
+            "obsidian"
             "rectangle"
           ];
         masApps = {
