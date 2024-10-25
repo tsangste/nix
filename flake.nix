@@ -40,6 +40,7 @@
           [
             "1password"
             "docker"
+            "jetbrains-toolbox"
             "obsidian"
             "rectangle"
           ];
