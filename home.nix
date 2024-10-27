@@ -92,7 +92,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "aws" ];
+      plugins = [ "git" "aws" "docker" "npm" "pip" "terraform" ];
       theme = "agnoster";
     };
   };
