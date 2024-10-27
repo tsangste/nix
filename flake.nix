@@ -32,6 +32,7 @@
           [
             "awscli"
             "checkov"
+            "fnm"
             "helm"
             "kubectl"
             "mas"

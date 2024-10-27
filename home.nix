@@ -86,6 +86,10 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
 
+    initExtra = ''
+      eval "$(fnm env --use-on-cd --shell zsh)"
+    '';
+
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "aws" ];
