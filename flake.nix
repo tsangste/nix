@@ -58,6 +58,9 @@
 
       fonts.packages =
         [
+          pkgs.font-awesome
+          pkgs.powerline-fonts
+          pkgs.powerline-symbols
           (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
         ];
 

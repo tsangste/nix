@@ -89,7 +89,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "aws" ];
-      theme = "pygmalion";
+      theme = "agnoster";
     };
   };
 
