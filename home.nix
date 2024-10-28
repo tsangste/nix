@@ -93,6 +93,7 @@
       PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
       eval "$(fnm env --use-on-cd --shell zsh)"
+      eval "$(pyenv virtualenv-init -)"
     '';
 
     oh-my-zsh = {
