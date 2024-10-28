@@ -32,14 +32,20 @@
           [
             "awscli"
             "checkov"
+            "coreutils"
             "fnm"
+            "gnu-sed"
+            "grep"
             "helm"
+            "jq"
             "kubectl"
             "mas"
+            "moreutils"
             "pre-commit"
             "terraform-docs"
             "tfenv"
             "tflint"
+            "wget"
           ];
         casks =
           [
@@ -48,6 +54,7 @@
             "jetbrains-toolbox"
             "obsidian"
             "rectangle"
+            "session-manager-plugin"
           ];
         masApps = {
           "Xcode" = 497799835;

@@ -68,7 +68,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    PATH ="/opt/homebrew/bin:$PATH";
+    PATH ="/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/grep/libexec/gnubin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/bin:$PATH";
   };
 
   programs.zsh = {
