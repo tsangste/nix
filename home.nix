@@ -68,7 +68,6 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    PATH ="/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/grep/libexec/gnubin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/bin:$PATH";
   };
 
   programs.zsh = {
@@ -88,6 +87,11 @@
     };
 
     initExtra = ''
+      PATH="/opt/homebrew/bin:$PATH"
+      PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+      PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+      PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+
       eval "$(fnm env --use-on-cd --shell zsh)"
     '';
 
