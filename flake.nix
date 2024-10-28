@@ -31,6 +31,7 @@
         brews =
           [
             "awscli"
+            "aws-iam-authenticator"
             "checkov"
             "coreutils"
             "fnm"
@@ -45,6 +46,7 @@
             "terraform-docs"
             "tfenv"
             "tflint"
+            "yarn"
             "wget"
           ];
         casks =
