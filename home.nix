@@ -77,9 +77,16 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ll = "ls -l";
+      ls = "ls --color=auto";
+      ll = "ls -alF";
+
       rebuild = "darwin-rebuild switch --flake '.config/nix#work'";
       update = "nix flake update '.config/nix'";
+
+      kcuc = "kubectl config use-context";
+      kcsc = "kubectl config set-context";
+      kcdc = "kubectl config delete-context";
+      kccc = "kubectl config current-context";
     };
     history = {
       size = 10000;
