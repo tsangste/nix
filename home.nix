@@ -79,7 +79,8 @@
 
     shellAliases = {
       ll = "ls -l";
-      update = "sudo nixos-rebuild switch";
+      rebuild = "darwin-rebuild switch --flake '.config/nix#work'";
+      update = "nix flake update '.config/nix'";
     };
     history = {
       size = 10000;
