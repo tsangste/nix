@@ -110,6 +110,32 @@
     };
   };
 
+  programs.git = {
+    enable = true;
+    userName = "Steven Tsang";
+    aliases = {
+      all = "add -A";
+      st = "status";
+      wipe = "reset --hard && clean -xfd";
+      update = "stash && pull --rebase && pop";
+      a = "add";
+      aa = "add -A";
+      c = "commit";
+      cm = "commit -m";
+      d = "diff";
+      s = "status";
+    };
+    includes = [
+      {
+        path = "~/.gitconfig.personal";
+      }
+      {
+        path = "~/.gitconfig.work";
+        condition = "gitdir:~/Development/landtech";
+      }
+    ];
+  };
+
   programs.pyenv = {
     enable = true;
     enableZshIntegration = true;
