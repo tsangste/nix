@@ -52,6 +52,7 @@
         casks =
           [
             "1password"
+            "1password-cli"
             "docker"
             "jetbrains-toolbox"
             "lens"
