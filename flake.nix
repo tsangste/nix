@@ -52,6 +52,7 @@
             "1password"
             "docker"
             "jetbrains-toolbox"
+            "lens"
             "obsidian"
             "rectangle"
             "session-manager-plugin"
