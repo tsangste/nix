@@ -67,7 +67,7 @@
   #  /etc/profiles/per-user/steven.tsang/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
   };
 
   programs.zsh = {
