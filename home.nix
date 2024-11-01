@@ -98,7 +98,7 @@
       PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
       PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
       PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-      PATH="/Users/steven.tsang/Development/landtech/ssm-ssh-jumpbox/scripts:$PATH"
+      PATH="/Users/steven.tsang/Development/work/ssm-ssh-jumpbox/scripts:$PATH"
 
       eval "$(fnm env --use-on-cd --shell zsh)"
       eval "$(pyenv virtualenv-init -)"
@@ -132,7 +132,7 @@
       }
       {
         path = "~/.gitconfig.work";
-        condition = "gitdir:~/Development/landtech";
+        condition = "gitdir:~/Development/work/**";
       }
     ];
   };
