@@ -63,6 +63,7 @@
             "1password"
             "1password-cli"
             "docker"
+            "firefox"
             "jetbrains-toolbox"
             "lens"
             "obsidian"
