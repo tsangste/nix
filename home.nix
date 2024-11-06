@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, name, username, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "steven.tsang";
+  home.username = username;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -64,7 +64,7 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/steven.tsang/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/${user}/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
     EDITOR = "vim";
@@ -98,7 +98,7 @@
       PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
       PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
       PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-      PATH="/Users/steven.tsang/Development/work/ssm-ssh-jumpbox/scripts:$PATH"
+      PATH="/Users/${username}/Development/work/ssm-ssh-jumpbox/scripts:$PATH"
 
       eval "$(fnm env --use-on-cd --shell zsh)"
       eval "$(pyenv virtualenv-init -)"
@@ -113,7 +113,7 @@
 
   programs.git = {
     enable = true;
-    userName = "Steven Tsang";
+    userName = name;
     aliases = {
       all = "add -A";
       st = "status";

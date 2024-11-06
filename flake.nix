@@ -142,36 +142,48 @@
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
-      darwinConfigurations."work" = nix-darwin.lib.darwinSystem {
-        modules =
-          [
-            configuration
-            {
-              users.users."steven.tsang".home = "/Users/steven.tsang";
-            }
-            nix-homebrew.darwinModules.nix-homebrew
-            {
-              nix-homebrew = {
-                # Install Homebrew under the default prefix
-                enable = true;
+      darwinConfigurations."work" =
+        let
+          name = "Steven Tsang";
+          username = "steven.tsang";
+        in
+        nix-darwin.lib.darwinSystem {
+          modules =
+            [
+              configuration
+              nix-homebrew.darwinModules.nix-homebrew
+              {
+                nix-homebrew = {
+                  # Install Homebrew under the default prefix
+                  enable = true;
 
-                # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-                enableRosetta = true;
+                  # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+                  enableRosetta = true;
 
-                # User owning the Homebrew prefix
-                user = "steven.tsang";
-              };
-            }
-            home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users."steven.tsang" = import ./home.nix;
-              };
-            }
-          ];
-      };
+                  # User owning the Homebrew prefix
+                  user = username;
+                };
+              }
+              {
+                users.users.${username}.home = "/Users/${username}";
+              }
+              home-manager.darwinModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.${username}.imports = [
+                    ({ config, ... }: import ./home.nix {
+                      inherit config;
+                      pkgs = nixpkgs;
+                      name = name;
+                      username = username;
+                    })
+                  ];
+                };
+              }
+            ];
+        };
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."work".pkgs;
