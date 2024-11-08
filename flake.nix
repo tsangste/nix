@@ -71,8 +71,10 @@
               "obsidian"
               "rectangle"
               "session-manager-plugin"
+              "Tuple"
             ];
           masApps = {
+            "Maccy" = 1527619437;
             "Xcode" = 497799835;
           };
           onActivation.cleanup = "zap";
