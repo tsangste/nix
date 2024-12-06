@@ -69,6 +69,7 @@
               "jetbrains-toolbox"
               "lens"
               "obsidian"
+              "postman"
               "rectangle"
               "session-manager-plugin"
               "Tuple"
