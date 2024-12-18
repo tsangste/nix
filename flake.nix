@@ -28,7 +28,7 @@
             [
               ./configuration.nix
               ({ lib, ... }: {
-                self = self;
+                inherit self;
                 brews = lib.mkMerge [];
                 casks = lib.mkMerge [];
               })
@@ -70,7 +70,7 @@
             [
               ./configuration.nix
               ({ lib, ... }: {
-                self = self;
+                inherit self;
                 brews = lib.mkMerge [
                   [
                     "awscli"
