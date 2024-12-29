@@ -11,8 +11,8 @@
       ls = "ls --color=auto";
       ll = "ls -alF";
 
-      rebuild = "darwin-rebuild switch --flake '.config/nix#work'";
-      update = "nix flake update '.config/nix'";
+      rebuild = "darwin-rebuild switch --flake '$NIX_CONFIG_DIR#work'";
+      update = "nix flake update $NIX_CONFIG_DIR";
 
       kcuc = "kubectl config use-context";
       kcsc = "kubectl config set-context";

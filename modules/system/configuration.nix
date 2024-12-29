@@ -11,19 +11,19 @@ with lib;
 
     brews = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "The list of Homebrew packages to install via `brew install`.";
     };
 
     casks = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "The list of Homebrew GUI applications to install via `brew install --cask`.";
     };
 
     masApps = mkOption {
       type = types.attrsOf types.int;
-      default = {};
+      default = { };
       description = "Mac App Store applications (names mapped to IDs).";
     };
   };
@@ -38,6 +38,10 @@ with lib;
         pkgs.mkalias
         pkgs.vim
       ];
+
+    environment.variables = {
+      NIX_CONFIG_DIR = "$HOME/.config/nix";
+    };
 
     homebrew = {
       enable = true;
