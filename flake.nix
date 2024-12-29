@@ -26,7 +26,9 @@
             ./modules/system/configuration.nix
             ({ lib, ... }: {
               inherit self;
-              inherit (extraArgs // { brews = [ ]; casks = [ ]; masApps = { }; }) brews casks masApps;
+              brews = if builtins.hasAttr "brews" extraArgs then extraArgs.brews else [ ];
+              casks = if builtins.hasAttr "casks" extraArgs then extraArgs.casks else [ ];
+              masApps = if builtins.hasAttr "masApps" extraArgs then extraArgs.masApps else { };
             })
             nix-homebrew.darwinModules.nix-homebrew
             {

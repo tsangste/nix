@@ -11,7 +11,7 @@
       ls = "ls --color=auto";
       ll = "ls -alF";
 
-      rebuild = "darwin-rebuild switch --flake '$NIX_CONFIG_DIR#mini'";
+      rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#mini";
       update = "nix flake update $NIX_CONFIG_DIR";
     };
     history = {
