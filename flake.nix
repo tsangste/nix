@@ -18,6 +18,7 @@
     let
       fullname = "Steven Tsang";
       username = "steven.tsang";
+      email = "tsangste@gmail.com";
     in
     {
       # Build darwin flake using:
@@ -26,7 +27,7 @@
         "mini" = nix-darwin.lib.darwinSystem {
           modules =
             [
-              ./configuration.nix
+              ./modules/system/configuration.nix
               ({ lib, ... }: {
                 inherit self;
                 masApps = {
@@ -35,7 +36,7 @@
               })
               nix-homebrew.darwinModules.nix-homebrew
               {
-                nix-homebrew = import ./modules/homebrew.nix { inherit username; };
+                nix-homebrew = import ./modules/homebrew { inherit username; };
               }
               {
                 users.users.${username}.home = "/Users/${username}";
@@ -49,6 +50,7 @@
                   extraSpecialArgs = {
                     inherit fullname;
                     inherit username;
+                    inherit email;
                   };
                 };
               }
@@ -57,7 +59,7 @@
         "work" = nix-darwin.lib.darwinSystem {
           modules =
             [
-              ./configuration.nix
+              ./modules/system/configuration.nix
               ({ lib, ... }: {
                 inherit self;
                 brews = [
@@ -92,7 +94,7 @@
               })
               nix-homebrew.darwinModules.nix-homebrew
               {
-                nix-homebrew = import ./modules/homebrew.nix { inherit username; };
+                nix-homebrew = import ./modules/homebrew { inherit username; };
               }
               {
                 users.users.${username}.home = "/Users/${username}";
@@ -106,6 +108,7 @@
                   extraSpecialArgs = {
                     inherit fullname;
                     inherit username;
+                    inherit email;
                   };
                 };
               }

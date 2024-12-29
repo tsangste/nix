@@ -1,9 +1,10 @@
-{ config, fullname, ... }:
+{ config, fullname, email, ... }:
 
 {
   programs.git = {
     enable = true;
     userName = fullname;
+    userEmail = email;
     aliases = {
       all = "add -A";
       st = "status";
@@ -23,9 +24,6 @@
       user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDNvWJnENwYza2ab/ALsmG4yvXxM1KvJriJuE9LpTpZj";
     };
     includes = [
-      {
-        path = "~/.gitconfig.personal";
-      }
       {
         path = "~/.gitconfig.work";
         condition = "gitdir:~/Development/work/**";
