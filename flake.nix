@@ -29,8 +29,9 @@
               ./configuration.nix
               ({ lib, ... }: {
                 inherit self;
-                brews = lib.mkMerge [ ];
-                casks = lib.mkMerge [ ];
+                masApps = {
+                  "UTM Virtual Machines" = 1538878817;
+                };
               })
               nix-homebrew.darwinModules.nix-homebrew
               {
@@ -59,38 +60,34 @@
               ./configuration.nix
               ({ lib, ... }: {
                 inherit self;
-                brews = lib.mkMerge [
-                  [
-                    "awscli"
-                    "aws-iam-authenticator"
-                    "cairo"
-                    "checkov"
-                    "credstash"
-                    "fnm"
-                    "helm"
-                    "kubectl"
-                    "pango"
-                    "pixman"
-                    "pipx"
-                    "pre-commit"
-                    "pyenv-virtualenv"
-                    "python-setuptools"
-                    "pipenv"
-                    "terraform-docs"
-                    "tilt"
-                    "tfenv"
-                    "tflint"
-                    "yarn"
-                  ]
+                brews = [
+                  "awscli"
+                  "aws-iam-authenticator"
+                  "cairo"
+                  "checkov"
+                  "credstash"
+                  "fnm"
+                  "helm"
+                  "kubectl"
+                  "pango"
+                  "pixman"
+                  "pipx"
+                  "pre-commit"
+                  "pyenv-virtualenv"
+                  "python-setuptools"
+                  "pipenv"
+                  "terraform-docs"
+                  "tilt"
+                  "tfenv"
+                  "tflint"
+                  "yarn"
                 ];
-                casks = lib.mkMerge [
-                  [
-                    "docker"
-                    "lens"
-                    "postman"
-                    "session-manager-plugin"
-                    "Tuple"
-                  ]
+                casks = [
+                  "docker"
+                  "lens"
+                  "postman"
+                  "session-manager-plugin"
+                  "Tuple"
                 ];
               })
               nix-homebrew.darwinModules.nix-homebrew
