@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ../../modules/common
-    ../../modules/git
-    ../../modules/pyenv
-    ./zsh
+    ../../modules/common.nix
+    ../../modules/git.nix
+    ../../modules/pyenv.nix
+    ./zsh.nix
   ];
 }
