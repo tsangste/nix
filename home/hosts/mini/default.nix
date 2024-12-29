@@ -1,9 +1,8 @@
-{ config, pkgs, name, username, ... }:
-
+{ config, pkgs, ... }:
 {
   imports = [
-    ../../modules/common { inherit config pkgs username; }
-    ../../modules/git { inherit name; }
-    ../../modules/zsh { inherit config; }
+    ../../modules/common.nix
+    ../../modules/git.nix
+    ../../modules/zsh.nix
   ];
 }

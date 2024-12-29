@@ -16,7 +16,7 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
     let
-      name = "Steven Tsang";
+      fullname = "Steven Tsang";
       username = "steven.tsang";
     in
     {
@@ -29,8 +29,8 @@
               ./configuration.nix
               ({ lib, ... }: {
                 inherit self;
-                brews = lib.mkMerge [];
-                casks = lib.mkMerge [];
+                brews = lib.mkMerge [ ];
+                casks = lib.mkMerge [ ];
               })
               nix-homebrew.darwinModules.nix-homebrew
               {
@@ -44,18 +44,15 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.${username}.imports = [
-                    ({ config, ... }: import ./home.nix {
-                      inherit config;
-                      pkgs = nixpkgs;
-                      name = name;
-                      username = username;
-                    })
-                  ];
+                  users.${username} = import ./home/hosts/mini;
+                  extraSpecialArgs = {
+                    inherit fullname;
+                    inherit username;
+                  };
                 };
               }
             ];
-          };
+        };
         "work" = nix-darwin.lib.darwinSystem {
           modules =
             [
@@ -108,18 +105,15 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.${username}.imports = [
-                    ({ config, ... }: import ./home.nix {
-                      inherit config;
-                      pkgs = nixpkgs;
-                      name = name;
-                      username = username;
-                    })
-                  ];
+                  users.${username} = import ./home/hosts/work;
+                  extraSpecialArgs = {
+                    inherit fullname;
+                    inherit username;
+                  };
                 };
               }
             ];
-          };
+        };
       };
     };
 }

@@ -1,9 +1,9 @@
-{ name, ... }:
+{ config, fullname, ... }:
 
 {
   programs.git = {
     enable = true;
-    userName = name;
+    userName = fullname;
     aliases = {
       all = "add -A";
       st = "status";
