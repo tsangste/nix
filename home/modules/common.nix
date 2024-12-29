@@ -1,4 +1,4 @@
-{ config, pkgs, name, username, ... }:
+{ config, pkgs, username, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -68,84 +68,6 @@
   #
   home.sessionVariables = {
     EDITOR = "vim";
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-
-    shellAliases = {
-      ls = "ls --color=auto";
-      ll = "ls -alF";
-
-      rebuild = "darwin-rebuild switch --flake '.config/nix#work'";
-      update = "nix flake update '.config/nix'";
-
-      kcuc = "kubectl config use-context";
-      kcsc = "kubectl config set-context";
-      kcdc = "kubectl config delete-context";
-      kccc = "kubectl config current-context";
-    };
-    history = {
-      size = 10000;
-      path = "${config.xdg.dataHome}/zsh/history";
-    };
-
-    initExtra = ''
-      PATH="/opt/homebrew/bin:$PATH"
-      PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-      PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
-      PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-      PATH="/Users/${username}/Development/work/ssm-ssh-jumpbox/scripts:$PATH"
-
-      eval "$(fnm env --use-on-cd --shell zsh)"
-      eval "$(pyenv virtualenv-init -)"
-    '';
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "aws" "docker" "npm" "pip" "terraform" ];
-      theme = "agnoster";
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = name;
-    aliases = {
-      all = "add -A";
-      st = "status";
-      wipe = "reset --hard && clean -xfd";
-      update = "stash && pull --rebase && pop";
-      a = "add";
-      aa = "add -A";
-      c = "commit";
-      cm = "commit -m";
-      d = "diff";
-      s = "status";
-    };
-    extraConfig = {
-      commit.gpgsign = true;
-      gpg.format = "ssh";
-      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-      user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDNvWJnENwYza2ab/ALsmG4yvXxM1KvJriJuE9LpTpZj";
-    };
-    includes = [
-      {
-        path = "~/.gitconfig.personal";
-      }
-      {
-        path = "~/.gitconfig.work";
-        condition = "gitdir:~/Development/work/**";
-      }
-    ];
-  };
-
-  programs.pyenv = {
-    enable = true;
-    enableZshIntegration = true;
   };
 
   # Let Home Manager install and manage itself.
