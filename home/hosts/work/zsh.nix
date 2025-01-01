@@ -12,7 +12,7 @@
       ll = "ls -alF";
 
       rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#work";
-      update = "nix flake update $NIX_CONFIG_DIR";
+      update = "nix flake update --flake $NIX_CONFIG_DIR";
 
       kcuc = "kubectl config use-context";
       kcsc = "kubectl config set-context";

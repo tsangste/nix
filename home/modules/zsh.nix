@@ -12,7 +12,7 @@
       ll = "ls -alF";
 
       rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#mini";
-      update = "nix flake update $NIX_CONFIG_DIR";
+      update = "nix flake update --flake $NIX_CONFIG_DIR";
     };
     history = {
       size = 10000;
