@@ -23,7 +23,10 @@
       mkSystem = { darwin, host, extraArgs }:
         darwin.lib.darwinSystem {
           modules = [
-            ./modules/system/configuration.nix
+            ./modules/configuration.nix
+            {
+              users.users.${username}.home = "/Users/${username}";
+            }
             ({ lib, ... }: {
               inherit self;
               brews = if builtins.hasAttr "brews" extraArgs then extraArgs.brews else [ ];
@@ -32,10 +35,16 @@
             })
             nix-homebrew.darwinModules.nix-homebrew
             {
-              nix-homebrew = import ./modules/homebrew { inherit username; };
-            }
-            {
-              users.users.${username}.home = "/Users/${username}";
+              nix-homebrew = {
+                # Install Homebrew under the default prefix
+                enable = true;
+
+                # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+                enableRosetta = true;
+
+                # User owning the Homebrew prefix
+                user = username;
+              };
             }
             home-manager.darwinModules.home-manager
             {
