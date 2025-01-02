@@ -8,27 +8,22 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ls = "ls --color=auto";
-      ll = "ls -alF";
-
-      rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#work";
-      update = "nix flake update --flake $NIX_CONFIG_DIR";
-
       kcuc = "kubectl config use-context";
       kcsc = "kubectl config set-context";
       kcdc = "kubectl config delete-context";
       kccc = "kubectl config current-context";
+
+      sandbox = "export AWS_PROFILE=sandbox";
+      staging = "export AWS_PROFILE=staging";
+      production = "export AWS_PROFILE=production";
     };
+
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
 
     initExtra = ''
-      PATH="/opt/homebrew/bin:$PATH"
-      PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-      PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
-      PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
       PATH="/Users/${username}/Development/work/ssm-ssh-jumpbox/scripts:$PATH"
 
       eval "$(fnm env --use-on-cd --shell zsh)"
@@ -39,6 +34,11 @@
       enable = true;
       plugins = [ "git" "aws" "docker" "npm" "pip" "terraform" ];
       theme = "agnoster";
+    };
+
+    sessionVariables = {
+      AWS_PROFILE = "staging";
+      AWS_SDK_LOAD_CONFIG = 1;
     };
   };
 }

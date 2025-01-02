@@ -50,6 +50,21 @@
     # '';
   };
 
+  home.shellAliases = {
+    ls = "ls --color=auto";
+    ll = "ls -alF";
+
+    rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#work";
+    update = "nix flake update --flake $NIX_CONFIG_DIR";
+  };
+
+  home.sessionPath = [
+    "/opt/homebrew/bin"
+    "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+    "/opt/homebrew/opt/grep/libexec/gnubin"
+    "/opt/homebrew/opt/coreutils/libexec/gnubin"
+  ];
+
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
