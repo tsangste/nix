@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ config, pkgs, username, host, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -54,7 +54,7 @@
     ls = "ls --color=auto";
     ll = "ls -alF";
 
-    rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#work";
+    rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#${host}";
     update = "nix flake update --flake $NIX_CONFIG_DIR";
   };
 

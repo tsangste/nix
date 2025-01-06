@@ -53,7 +53,7 @@
                 useUserPackages = true;
                 users.${username} = import ./home/hosts/${host};
                 extraSpecialArgs = {
-                  inherit fullname username email;
+                  inherit email host fullname username;
                 };
               };
             }
