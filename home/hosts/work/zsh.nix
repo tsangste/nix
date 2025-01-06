@@ -12,10 +12,6 @@
       kcsc = "kubectl config set-context";
       kcdc = "kubectl config delete-context";
       kccc = "kubectl config current-context";
-
-      sandbox = "export AWS_PROFILE=sandbox";
-      staging = "export AWS_PROFILE=staging";
-      production = "export AWS_PROFILE=production";
     };
 
     history = {
