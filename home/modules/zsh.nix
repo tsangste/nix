@@ -14,7 +14,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "npm" ];
+      plugins = [ "git" "npm" "thefuck" "tldr" ];
       theme = "agnoster";
     };
   };

@@ -28,8 +28,11 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "aws" "docker" "npm" "pip" "terraform" ];
+      plugins = [ "git" "aws" "docker" "fnm" "npm" "pip" "terraform" "thefuck" "tldr" "yarn" ];
       theme = "agnoster";
+      extraConfig = ''
+        zstyle ':omz:plugins:yarn' berry yes
+      '';
     };
 
     sessionVariables = {

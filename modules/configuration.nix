@@ -53,6 +53,8 @@ with lib;
           "jq"
           "mas"
           "moreutils"
+          "thefuck"
+          "tlrc"
           "wget"
         ] ++ config.brews;
       casks =
