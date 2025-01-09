@@ -81,6 +81,7 @@
             brews = [
               "awscli"
               "aws-iam-authenticator"
+              "aws-sam-cli"
               "cairo"
               "checkov"
               "credstash"
