@@ -18,7 +18,7 @@
     let
       fullname = "Steven Tsang";
       username = "steven.tsang";
-      email = "tsangste@gmail.com";
+      email = "3403544+tsangste@users.noreply.github.com";
 
       mkSystem = { darwin, host, extraArgs }:
         darwin.lib.darwinSystem {
