@@ -36,7 +36,7 @@ with lib;
     environment.systemPackages =
       [
         pkgs.mkalias
-        pkgs.vim
+        pkgs.neovim
       ];
 
     environment.variables = {
