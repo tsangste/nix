@@ -53,6 +53,7 @@ with lib;
           "jq"
           "mas"
           "moreutils"
+          "ollama"
           "thefuck"
           "tlrc"
           "wget"
