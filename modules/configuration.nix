@@ -53,7 +53,6 @@ with lib;
           "jq"
           "mas"
           "moreutils"
-          "ollama"
           "thefuck"
           "tlrc"
           "wget"
@@ -65,6 +64,7 @@ with lib;
           "firefox"
           "jetbrains-toolbox"
           "obsidian"
+          "ollama"
           "rectangle"
         ] ++ config.casks;
       masApps = {
