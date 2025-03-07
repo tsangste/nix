@@ -100,6 +100,7 @@
               "tfenv"
               "tflint"
               "yarn"
+              "yq"
             ];
             casks = [
               "docker"

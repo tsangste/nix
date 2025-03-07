@@ -116,7 +116,7 @@ with lib;
       NSGlobalDomain.AppleInterfaceStyle = "Dark";
     };
 
-    security.pam.enableSudoTouchIdAuth = true;
+    security.pam.services.sudo_local.touchIdAuth = true;
 
     # Auto upgrade nix package.
     # nix.package = pkgs.nix;
