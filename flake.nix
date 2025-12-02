@@ -23,7 +23,7 @@
       mkSystem = { darwin, host, extraArgs }:
         darwin.lib.darwinSystem {
           modules = [
-            ./modules/configuration.nix
+            ./modules/darwin/configuration.nix
             {
               users.users.${username}.home = "/Users/${username}";
             }
@@ -51,7 +51,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.${username} = import ./home/hosts/${host};
+                users.${username} = import ./hosts/${host};
                 extraSpecialArgs = {
                   inherit email host fullname username;
                 };
