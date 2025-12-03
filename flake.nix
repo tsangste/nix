@@ -20,19 +20,14 @@
       username = "steven.tsang";
       email = "3403544+tsangste@users.noreply.github.com";
 
-      mkDarwinSystem = { darwin, host, extraArgs }:
+      mkDarwinSystem = { darwin, host }:
         darwin.lib.darwinSystem {
           modules = [
             ./modules/darwin/configuration.nix
+            ./hosts/${host}/configuration.nix
             {
               users.users.${username}.home = "/Users/${username}";
             }
-            ({ lib, ... }: {
-              inherit self;
-              brews = if builtins.hasAttr "brews" extraArgs then extraArgs.brews else [ ];
-              casks = if builtins.hasAttr "casks" extraArgs then extraArgs.casks else [ ];
-              masApps = if builtins.hasAttr "masApps" extraArgs then extraArgs.masApps else { };
-            })
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
@@ -60,48 +55,10 @@
         "mini" = mkDarwinSystem {
           darwin = nix-darwin;
           host = "mini";
-          extraArgs = {
-            masApps = {
-              "UTM Virtual Machines" = 1538878817;
-            };
-          };
         };
         "work" = mkDarwinSystem {
           darwin = nix-darwin;
           host = "work";
-          extraArgs = {
-            brews = [
-              "awscli"
-              "aws-iam-authenticator"
-              "aws-sam-cli"
-              "cairo"
-              "checkov"
-              "credstash"
-              "fnm"
-              "helm"
-              "kubectl"
-              "pango"
-              "pixman"
-              "pipx"
-              "pre-commit"
-              "pyenv-virtualenv"
-              "python-setuptools"
-              "pipenv"
-              "terraform-docs"
-              "tilt"
-              "tfenv"
-              "tflint"
-              "yarn"
-              "yq"
-            ];
-            casks = [
-              "docker"
-              "lens"
-              "postman"
-              "session-manager-plugin"
-              "Tuple"
-            ];
-          };
         };
       };
     };
