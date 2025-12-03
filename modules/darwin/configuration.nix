@@ -64,7 +64,6 @@ with lib;
           "firefox"
           "jetbrains-toolbox"
           "obsidian"
-          "ollama"
           "rectangle"
         ] ++ config.casks;
       masApps = {

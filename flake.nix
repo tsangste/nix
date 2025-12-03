@@ -20,19 +20,15 @@
       username = "steven.tsang";
       email = "3403544+tsangste@users.noreply.github.com";
 
-      mkSystem = { darwin, host, extraArgs }:
+      mkDarwinSystem = { darwin, host }:
         darwin.lib.darwinSystem {
+          specialArgs = { inherit self; };
           modules = [
-            ./modules/configuration.nix
+            ./modules/darwin/configuration.nix
+            ./hosts/${host}/configuration.nix
             {
               users.users.${username}.home = "/Users/${username}";
             }
-            ({ lib, ... }: {
-              inherit self;
-              brews = if builtins.hasAttr "brews" extraArgs then extraArgs.brews else [ ];
-              casks = if builtins.hasAttr "casks" extraArgs then extraArgs.casks else [ ];
-              masApps = if builtins.hasAttr "masApps" extraArgs then extraArgs.masApps else { };
-            })
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
@@ -47,69 +43,23 @@
               };
             }
             home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${username} = import ./home/hosts/${host};
-                extraSpecialArgs = {
-                  inherit email host fullname username;
-                };
-              };
-            }
-          ]
-          ++ (extraArgs.extraModules or [ ]); # Dynamically append extra Nix modules using extraArgs
+            (import ./modules/common/home-manager.nix {
+              inherit username host email fullname;
+            })
+          ];
         };
     in
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
       darwinConfigurations = {
-        "mini" = mkSystem {
+        "mini" = mkDarwinSystem {
           darwin = nix-darwin;
           host = "mini";
-          extraArgs = {
-            masApps = {
-              "UTM Virtual Machines" = 1538878817;
-            };
-          };
         };
-        "work" = mkSystem {
+        "work" = mkDarwinSystem {
           darwin = nix-darwin;
           host = "work";
-          extraArgs = {
-            brews = [
-              "awscli"
-              "aws-iam-authenticator"
-              "aws-sam-cli"
-              "cairo"
-              "checkov"
-              "credstash"
-              "fnm"
-              "helm"
-              "kubectl"
-              "pango"
-              "pixman"
-              "pipx"
-              "pre-commit"
-              "pyenv-virtualenv"
-              "python-setuptools"
-              "pipenv"
-              "terraform-docs"
-              "tilt"
-              "tfenv"
-              "tflint"
-              "yarn"
-              "yq"
-            ];
-            casks = [
-              "docker"
-              "lens"
-              "postman"
-              "session-manager-plugin"
-              "Tuple"
-            ];
-          };
         };
       };
     };
