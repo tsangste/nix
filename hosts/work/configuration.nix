@@ -1,5 +1,7 @@
-{ ... }:
+{ self, ... }:
 {
+  inherit self;
+
   brews = [
     "awscli"
     "aws-iam-authenticator"
