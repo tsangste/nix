@@ -20,7 +20,7 @@
       username = "steven.tsang";
       email = "3403544+tsangste@users.noreply.github.com";
 
-      mkSystem = { darwin, host, extraArgs }:
+      mkDarwinSystem = { darwin, host, extraArgs }:
         darwin.lib.darwinSystem {
           modules = [
             ./modules/darwin/configuration.nix
@@ -47,25 +47,17 @@
               };
             }
             home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${username} = import ./hosts/${host};
-                extraSpecialArgs = {
-                  inherit email host fullname username;
-                };
-              };
-            }
-          ]
-          ++ (extraArgs.extraModules or [ ]); # Dynamically append extra Nix modules using extraArgs
+            (import ./modules/common/home-manager.nix {
+              inherit username host email fullname;
+            })
+          ];
         };
     in
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
       darwinConfigurations = {
-        "mini" = mkSystem {
+        "mini" = mkDarwinSystem {
           darwin = nix-darwin;
           host = "mini";
           extraArgs = {
@@ -74,7 +66,7 @@
             };
           };
         };
-        "work" = mkSystem {
+        "work" = mkDarwinSystem {
           darwin = nix-darwin;
           host = "work";
           extraArgs = {
