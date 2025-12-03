@@ -19,10 +19,7 @@
     "pyenv-virtualenv"
     "python-setuptools"
     "pipenv"
-    "terraform-docs"
     "tilt"
-    "tfenv"
-    "tflint"
     "yarn"
     "yq"
   ];
