@@ -20,7 +20,7 @@
     };
 
     initContent = ''
-      PATH="/Users/${username}/Development/work/ssm-ssh-jumpbox/scripts:$PATH"
+      PATH="/Users/${username}/Development/ssm-ssh-jumpbox/scripts:$PATH"
 
       eval "$(fnm env --use-on-cd --shell zsh)"
       eval "$(pyenv virtualenv-init -)"
