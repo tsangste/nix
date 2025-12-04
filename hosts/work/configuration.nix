@@ -24,7 +24,7 @@
     "yq"
   ];
   casks = [
-    "docker"
+    "docker-desktop"
     "lens"
     "postman"
     "session-manager-plugin"
