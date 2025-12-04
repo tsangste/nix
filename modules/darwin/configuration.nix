@@ -122,7 +122,7 @@ with lib;
 
       secrets = {
         gitPat = {
-          reference = "op://Private/GitHub Pat/credential";
+          reference = "op://Service/GitHub Pat/credential";
           path = ".config/tokens/github";
         };
       };
