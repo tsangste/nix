@@ -75,6 +75,7 @@
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    GITHUB_ACCESS_TOKEN = "$(cat ${config.home.homeDirectory}/.config/tokens/github)";
   };
 
   # Let Home Manager install and manage itself.

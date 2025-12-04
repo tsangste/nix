@@ -16,9 +16,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opnix.url = "github:brizzbuzz/opnix";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, opnix, ... }:
     let
       fullname = "Steven Tsang";
       username = "steven.tsang";
@@ -43,6 +44,7 @@
         darwin.lib.darwinSystem {
           specialArgs = { inherit self; };
           modules = [
+            opnix.darwinModules.default
             ./modules/darwin/configuration.nix
             ./hosts/${host}/configuration.nix
             {
