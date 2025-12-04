@@ -19,7 +19,7 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
 
-    initExtra = ''
+    initContent = ''
       PATH="/Users/${username}/Development/work/ssm-ssh-jumpbox/scripts:$PATH"
 
       eval "$(fnm env --use-on-cd --shell zsh)"

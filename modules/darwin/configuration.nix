@@ -88,7 +88,7 @@ with lib;
         env = pkgs.buildEnv {
           name = "system-applications";
           paths = config.environment.systemPackages;
-          pathsToLink = "/Applications";
+          pathsToLink = ["/Applications"];
         };
       in
       pkgs.lib.mkForce ''
@@ -104,7 +104,7 @@ with lib;
         done
       '';
 
-    system.activationScripts.postUserActivation.text = ''
+    system.activationScripts.postActivation.text = ''
       # Following line should allow us to avoid a logout/login cycle
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
@@ -125,6 +125,7 @@ with lib;
 
     # Create /etc/zshrc that loads the nix-darwin environment.
     programs.zsh.enable = true; # default shell on catalina
+    system.primaryUser = "steven.tsang";
 
     # Set Git commit hash for darwin-version.
     system.configurationRevision = config.self.rev or config.self.dirtyRev or null;
