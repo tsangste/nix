@@ -54,7 +54,7 @@
     ls = "ls --color=auto";
     ll = "ls -alF";
 
-    rebuild = "darwin-rebuild switch --flake $NIX_CONFIG_DIR#${host}";
+    rebuild = "sudo darwin-rebuild switch --flake $NIX_CONFIG_DIR#${host}";
     update = "nix flake update --flake $NIX_CONFIG_DIR";
   };
 
