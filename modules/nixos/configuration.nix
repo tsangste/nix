@@ -3,9 +3,6 @@
 {
   nix.settings.experimental-features = "nix-command flakes";
 
-  wsl.enable = true;
-  wsl.defaultUser = username;
-
   environment.systemPackages = [
     pkgs.neovim
     pkgs.wget
@@ -23,7 +20,10 @@
     isNormalUser = true;
     description = username;
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
+
+  programs.zsh.enable = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
