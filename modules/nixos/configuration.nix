@@ -9,6 +9,7 @@
     pkgs.neovim
     pkgs.wget
     pkgs.git
+    pkgs.procps
   ];
 
   environment.variables = {

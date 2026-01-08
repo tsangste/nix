@@ -18,7 +18,7 @@
       Description = "1Password GUI";
     };
     Service = {
-      ExecStart = "${pkgs._1password-gui}/bin/1password --silent";
+      ExecStart = "${pkgs._1password-gui}/bin/1password --silent --disable-gpu --no-sandbox";
       Restart = "on-failure";
       RestartSec = "5s";
       Environment = [
@@ -29,10 +29,4 @@
       WantedBy = [ "default.target" ];
     };
   };
-  programs.zsh.initExtra = ''
-    if [ -n "$DISPLAY" ]; then
-      systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
-      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY
-    fi
-  '';
 }
