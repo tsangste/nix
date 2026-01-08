@@ -9,6 +9,10 @@
     pkgs.git
   ];
 
+  environment.variables = {
+    NIX_CONFIG_DIR = "$HOME/.config/nix";
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/London";
 
