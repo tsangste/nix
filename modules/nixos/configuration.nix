@@ -13,6 +13,7 @@
     pkgs.procps
     pkgs.gnome-keyring
     pkgs.libsecret
+    pkgs.gcr
   ];
 
   environment.variables = {
@@ -43,15 +44,6 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
-
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (action.id == "org.freedesktop.secrets.devel.allow" &&
-          subject.isInGroup("wheel")) {
-        return polkit.Result.YES;
-      }
-    });
-  '';
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }

@@ -24,6 +24,7 @@
       Environment = [
         "PATH=${pkgs.coreutils}/bin:${pkgs.dbus}/bin"
         "DISPLAY=:0"
+        "XDG_CURRENT_DESKTOP=GNOME"
       ];
     };
     Install = {
