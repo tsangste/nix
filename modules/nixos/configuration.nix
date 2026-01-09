@@ -9,7 +9,8 @@
     pkgs.neovim
     pkgs.wget
     pkgs.git
-    pkgs.procps
+    pkgs.gnome-keyring
+    pkgs.libsecret
   ];
 
   environment.variables = {
@@ -37,6 +38,9 @@
     enable = true;
     polkitPolicyOwners = [ username ];
   };
+
+  services.gnome.gnome-keyring.enable = true;
+  security.polkit.enable = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
