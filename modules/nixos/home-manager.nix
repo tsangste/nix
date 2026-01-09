@@ -23,6 +23,7 @@
       RestartSec = "5s";
       Environment = [
         "PATH=${pkgs.coreutils}/bin:${pkgs.dbus}/bin"
+        "DISPLAY=:0"
       ];
     };
     Install = {
