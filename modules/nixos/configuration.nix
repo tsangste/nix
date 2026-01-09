@@ -13,7 +13,6 @@
     pkgs.procps
     pkgs.gnome-keyring
     pkgs.libsecret
-    pkgs.gcr
   ];
 
   environment.variables = {
