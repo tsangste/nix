@@ -5,4 +5,5 @@
 
   wsl.enable = true;
   wsl.defaultUser = username;
+  wsl.useWindowsDriver = true;
 }
