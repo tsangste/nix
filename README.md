@@ -1,4 +1,4 @@
-# ❄️ Nix macOS Configuration
+# ❄️ Nix (WSL & macOS) Configuration
 
 ## Commands to know
 - Rebuild and switch the system configuration:
@@ -25,6 +25,13 @@ git clone https://github.com/tsangste/nix ~/.config/nix && cd ~/.config/nix
 
 Initialise configuration based on your computer name
 
+### wsl
+
 ```bash
-nix run nix-darwin --experimental-features "nix-command flakes" -- switch --flake '.#yourComputer'
+sudo nixos-rebuild switch --flake '.#yourHostname'
+```
+
+### macOS
+```bash
+nix run nix-darwin --experimental-features "nix-command flakes" -- switch --flake '.#yourHostname'
 ```

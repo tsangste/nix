@@ -7,6 +7,10 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -19,6 +23,21 @@
       fullname = "Steven Tsang";
       username = "steven.tsang";
       email = "3403544+tsangste@users.noreply.github.com";
+
+      mkSystem = { host }:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit self username; };
+          modules = [
+            inputs.nixos-wsl.nixosModules.default
+            ./modules/nixos/configuration.nix
+            ./hosts/${host}/configuration.nix
+            home-manager.nixosModules.home-manager
+            (import ./modules/common/home-manager.nix {
+              inherit username host email fullname;
+            })
+          ];
+        };
 
       mkDarwinSystem = { darwin, host }:
         darwin.lib.darwinSystem {
@@ -50,6 +69,12 @@
         };
     in
     {
+      nixosConfigurations = {
+        "wsl" = mkSystem {
+          host = "wsl";
+        };
+      };
+
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
       darwinConfigurations = {
