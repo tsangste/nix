@@ -9,6 +9,7 @@
     pkgs.neovim
     pkgs.wget
     pkgs.git
+    pkgs.google-chrome
     pkgs.procps
     pkgs.gnome-keyring
     pkgs.libsecret
