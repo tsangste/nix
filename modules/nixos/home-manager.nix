@@ -16,6 +16,7 @@
   systemd.user.services._1password = {
     Unit = {
       Description = "1Password GUI";
+      After = [ "dbus.service" "gnome-keyring.service" ];
     };
     Service = {
       ExecStart = "${pkgs._1password-gui}/bin/1password --silent --disable-gpu --no-sandbox";
@@ -25,6 +26,8 @@
         "PATH=${pkgs.coreutils}/bin:${pkgs.dbus}/bin"
         "DISPLAY=:0"
         "XDG_CURRENT_DESKTOP=GNOME"
+        "XDG_RUNTIME_DIR=/run/user/1000"
+        "GNOME_KEYRING_CONTROL=/run/user/1000/keyring"
       ];
     };
     Install = {
