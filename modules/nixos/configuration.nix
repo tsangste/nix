@@ -9,10 +9,11 @@
     pkgs.neovim
     pkgs.wget
     pkgs.git
-    pkgs.google-chrome
     pkgs.procps
     pkgs.gnome-keyring
     pkgs.libsecret
+    pkgs.seahorse
+    pkgs.gcr
   ];
 
   environment.variables = {
@@ -42,6 +43,8 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
+  services.dbus.enable = true;
+  security.pam.services.${username}.enableGnomeKeyring = true;
   security.polkit.enable = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
