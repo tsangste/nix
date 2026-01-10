@@ -30,6 +30,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit self username; };
           modules = [
+            opnix.nixosModules.default
             inputs.nixos-wsl.nixosModules.default
             ./modules/nixos/configuration.nix
             ./hosts/${host}/configuration.nix
