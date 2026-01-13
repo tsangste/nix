@@ -30,13 +30,12 @@
           system = "x86_64-linux";
           specialArgs = { inherit self username; };
           modules = [
-            opnix.nixosModules.default
             inputs.nixos-wsl.nixosModules.default
             ./modules/nixos/configuration.nix
             ./hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
             (import ./modules/common/home-manager.nix {
-              inherit username host email fullname;
+              inherit username host email fullname opnix;
             })
           ];
         };
@@ -45,7 +44,6 @@
         darwin.lib.darwinSystem {
           specialArgs = { inherit self; };
           modules = [
-            opnix.darwinModules.default
             ./modules/darwin/configuration.nix
             ./hosts/${host}/configuration.nix
             {
@@ -66,7 +64,7 @@
             }
             home-manager.darwinModules.home-manager
             (import ./modules/common/home-manager.nix {
-              inherit username host email fullname;
+              inherit username host email fullname opnix;
             })
           ];
         };

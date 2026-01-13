@@ -80,4 +80,15 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.onepassword-secrets = {
+    enable = true;
+    secrets = {
+      githubToken  = {
+        reference = "op://Service/GitHub PAT/credential";
+        path = ".config/gh/token";
+        mode = "0600";
+      };
+    };
+  };
 }
