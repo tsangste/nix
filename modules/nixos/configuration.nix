@@ -46,19 +46,6 @@
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
 
-  # OpNix system-level secrets configuration
-  services.onepassword-secrets = {
-    enable = true;
-    tokenFile = "/etc/opnix-token";
-
-    secrets = {
-      gitPat = {
-        reference = "op://Service/GitHub Pat/credential";
-        path = ".config/tokens/github";
-      };
-    };
-  };
-
   security.pam.services.${username}.enableGnomeKeyring = true;
   security.polkit.enable = true;
 

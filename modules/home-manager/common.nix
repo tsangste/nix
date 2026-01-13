@@ -83,9 +83,10 @@
 
   programs.onepassword-secrets = {
     enable = true;
+    tokenFile = "/etc/opnix-token";
     secrets = {
-      githubToken  = {
-        reference = "op://Service/GitHub PAT/credential";
+      gitPat  = {
+        reference = "op://Service/GitHub Pat/credential";
         path = ".config/gh/token";
         mode = "0600";
       };

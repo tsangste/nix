@@ -116,19 +116,6 @@ with lib;
       NSGlobalDomain.AppleInterfaceStyle = "Dark";
     };
 
-    # OpNix system-level secrets configuration
-    services.onepassword-secrets = {
-      enable = true;
-      tokenFile = "/etc/opnix-token";
-
-      secrets = {
-        gitPat = {
-          reference = "op://Service/GitHub Pat/credential";
-          path = ".config/tokens/github";
-        };
-      };
-    };
-
     security.pam.services.sudo_local.touchIdAuth = true;
 
     # Auto upgrade nix package.
