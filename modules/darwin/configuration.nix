@@ -37,7 +37,6 @@ with lib;
       [
         pkgs.mkalias
         pkgs.neovim
-        pkgs.opnix
       ];
 
     environment.variables = {

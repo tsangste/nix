@@ -14,7 +14,6 @@
     pkgs.libsecret
     pkgs.seahorse
     pkgs.gcr
-    pkgs.opnix
   ];
 
   environment.variables = {
