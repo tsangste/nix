@@ -16,9 +16,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opnix.url = "github:brizzbuzz/opnix";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, opnix, ... }:
     let
       fullname = "Steven Tsang";
       username = "steven.tsang";
@@ -34,7 +35,7 @@
             ./hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
             (import ./modules/common/home-manager.nix {
-              inherit username host email fullname;
+              inherit username host email fullname opnix;
             })
           ];
         };
@@ -63,7 +64,7 @@
             }
             home-manager.darwinModules.home-manager
             (import ./modules/common/home-manager.nix {
-              inherit username host email fullname;
+              inherit username host email fullname opnix;
             })
           ];
         };

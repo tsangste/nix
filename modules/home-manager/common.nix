@@ -75,8 +75,21 @@
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    GITHUB_ACCESS_TOKEN = "$(cat ${config.home.homeDirectory}/.config/gh/token)";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.onepassword-secrets = {
+    enable = true;
+    tokenFile = "${config.home.homeDirectory}/.config/opnix/token";
+    secrets = {
+      gitPat  = {
+        reference = "op://Service/GitHub Pat/credential";
+        path = ".config/gh/token";
+        mode = "0600";
+      };
+    };
+  };
 }
