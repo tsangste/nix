@@ -42,6 +42,8 @@
     polkitPolicyOwners = [ username ];
   };
 
+  programs.nix-ld.enable = true;
+
   services.gnome.gnome-keyring.enable = true;
   services.dbus.enable = true;
 
