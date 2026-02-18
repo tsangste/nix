@@ -76,6 +76,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     GITHUB_ACCESS_TOKEN = "$(cat ${config.home.homeDirectory}/.config/gh/token)";
+    APOLLO_KEY = "$(cat ${config.home.homeDirectory}/.config/apollo/token)";
   };
 
   # Let Home Manager install and manage itself.
@@ -88,6 +89,11 @@
       gitPat  = {
         reference = "op://Service/GitHub Pat/credential";
         path = ".config/gh/token";
+        mode = "0600";
+      };
+      apolloKey = {
+        reference = "op://Service/Apollo Key/credential";
+        path = ".config/apollo/token";
         mode = "0600";
       };
     };
