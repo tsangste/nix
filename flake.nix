@@ -2,24 +2,25 @@
   description = "Steven Nix for macOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
+      url = "github:nix-community/NixOS-WSL/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     opnix.url = "github:brizzbuzz/opnix";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, opnix, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, nix-homebrew, home-manager, opnix, ... }:
     let
       fullname = "Steven Tsang";
       username = "steven.tsang";
@@ -36,6 +37,20 @@
             home-manager.nixosModules.home-manager
             (import ./modules/common/home-manager.nix {
               inherit username host email fullname opnix;
+            })
+            ({ ... }: {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  _1password = (import nixpkgs-unstable {
+                    system = prev.system;
+                    config.allowUnfree = true;
+                  })._1password;
+                  _1password-gui = (import nixpkgs-unstable {
+                    system = prev.system;
+                    config.allowUnfree = true;
+                  })._1password-gui;
+                })
+              ];
             })
           ];
         };
