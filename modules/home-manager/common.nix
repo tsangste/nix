@@ -54,7 +54,7 @@
     ls = "ls --color=auto";
     ll = "ls -alF";
 
-    update = "nix flake update --flake $NIX_CONFIG_DIR";
+    update = "nix flake update --impure --access-tokens \"github.com=$GITHUB_ACCESS_TOKEN\" --flake $NIX_CONFIG_DIR";
   };
 
   # Home Manager can also manage your environment variables through
