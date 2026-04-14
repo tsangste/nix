@@ -11,6 +11,7 @@
     "credstash"
     "fnm"
     "helm"
+    "junie"
     "kubectl"
     "pango"
     "pixman"

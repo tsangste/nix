@@ -71,6 +71,22 @@
         "type": "github"
       }
     },
+    "homebrew-junie": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776093693,
+        "narHash": "sha256-eZyenw19EehuLAmDzfhmvMHY/Rh0bcELNY+Yr8eW3LA=",
+        "owner": "jetbrains",
+        "repo": "homebrew-junie",
+        "rev": "d9a548cbaf8c7880924cdf80991885998907fc0c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jetbrains",
+        "repo": "homebrew-junie",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -185,6 +201,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "homebrew-junie": "homebrew-junie",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixos-wsl": "nixos-wsl",
