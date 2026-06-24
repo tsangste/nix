@@ -38,9 +38,6 @@
     sessionVariables = {
       AWS_PROFILE = "staging";
       AWS_SDK_LOAD_CONFIG = 1;
-      NODE_EXTRA_CA_CERTS = "${config.home.homeDirectory}/.config/certs/company.pem";
-      NIX_SSL_CERT_FILE="${config.home.homeDirectory}/.config/certs/company.pem";
-      SSL_CERT_FILE="${config.home.homeDirectory}/.config/certs/company.pem";
     };
   };
 }

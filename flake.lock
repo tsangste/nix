@@ -3,16 +3,16 @@
     "brew-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1763638478,
-        "narHash": "sha256-n/IMowE9S23ovmTkKX7KhxXC2Yq41EAVFR2FBIXPcT8=",
+        "lastModified": 1781226006,
+        "narHash": "sha256-w4ZTuOnhYiDxjaynrMTASzp802QblBWmo3wpB8wVN4Y=",
         "owner": "Homebrew",
         "repo": "brew",
-        "rev": "fbfdbaba008189499958a7aeb1e2c36ab10c067d",
+        "rev": "109191be4988470b51a60a5ef1998520aa24c01b",
         "type": "github"
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "5.0.3",
+        "ref": "6.0.1",
         "repo": "brew",
         "type": "github"
       }
@@ -71,6 +71,22 @@
         "type": "github"
       }
     },
+    "homebrew-junie": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782317270,
+        "narHash": "sha256-EkJlubRhFZE67F4b0P804IW9gmArNje/LLjoNTGBPEA=",
+        "owner": "jetbrains",
+        "repo": "homebrew-junie",
+        "rev": "6f065bfcaa990e5cf7bbcb4d2c8bcf81f00bc1d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jetbrains",
+        "repo": "homebrew-junie",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -96,11 +112,11 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1764473698,
-        "narHash": "sha256-C91gPgv6udN5WuIZWNehp8qdLqlrzX6iF/YyboOj6XI=",
+        "lastModified": 1781389246,
+        "narHash": "sha256-ORqLAo/hoJdsZC7UPAuEHev6S0+XIqKEC7vjo5prz1k=",
         "owner": "zhaofengli-wip",
         "repo": "nix-homebrew",
-        "rev": "6a8ab60bfd66154feeaa1021fc3b32684814a62a",
+        "rev": "de7953a08ed4bb9245be043e468561c17b89130d",
         "type": "github"
       },
       "original": {
@@ -185,6 +201,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "homebrew-junie": "homebrew-junie",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixos-wsl": "nixos-wsl",

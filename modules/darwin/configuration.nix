@@ -45,6 +45,7 @@ with lib;
 
     homebrew = {
       enable = true;
+      taps = builtins.attrNames config.nix-homebrew.taps;
       brews =
         [
           "coreutils"

@@ -17,9 +17,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     opnix.url = "github:brizzbuzz/opnix";
+
+    homebrew-junie = {
+      url = "github:jetbrains/homebrew-junie";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, opnix, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager, opnix, homebrew-junie, ... }:
     let
       fullname = "Steven Tsang";
       username = "steven.tsang";
@@ -42,7 +47,7 @@
 
       mkDarwinSystem = { darwin, host }:
         darwin.lib.darwinSystem {
-          specialArgs = { inherit self; };
+          specialArgs = { inherit self username; };
           modules = [
             ./modules/darwin/configuration.nix
             ./hosts/${host}/configuration.nix
@@ -60,6 +65,17 @@
 
                 # User owning the Homebrew prefix
                 user = username;
+
+                # Optional: Declarative tap management
+                taps = {
+                  "homebrew/homebrew-junie" = homebrew-junie;
+                };
+
+                # With `mutableTaps = false`, taps can be removed by deleting the corresponding attribute in `nix-homebrew.taps` and activating the new configuration.
+                mutableTaps = false;
+
+                # If you've already installed Homebrew with the official script, you can let `nix-homebrew` automatically migrate it:
+                autoMigrate = true;
               };
             }
             home-manager.darwinModules.home-manager
