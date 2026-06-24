@@ -1,6 +1,8 @@
-{ self, username, ... }:
+{ self, username, pkgs, lib, ... }:
 let
-  sslCertFile = "/Users/${username}/.config/certs/ca-bundle-combined.pem";
+  sslCertFile = "/Users/${username}/.config/certs/company.pem";
+  junieCaAlias = "corporate-gateway-ca";
+  keytool = "${pkgs.openjdk}/bin/keytool";
 in
 {
   inherit self;
@@ -14,6 +16,30 @@ in
     REQUEST_CA_BUNDLE = sslCertFile;
     NODE_EXTRA_CA_CERTS = sslCertFile;
   };
+
+  # Junie ships a bundled JRE and ignores SSL_CERT_FILE; trust the corporate intercept CA
+  # in its Java cacerts keystore (same idea as importing a Zscaler root via keytool).
+  system.activationScripts.postActivation.text = lib.mkAfter ''
+    companyCert="${sslCertFile}"
+    if [ ! -f "$companyCert" ]; then
+      echo "junieCorporateCa: skipping, $companyCert not found" >&2
+    else
+      find "/Users/${username}/.local/share/junie/versions" "/opt/homebrew/Cellar/junie" \
+        -path '*/lib/security/cacerts' -type f 2>/dev/null |
+      while read -r cacerts; do
+        if ${keytool} -list -keystore "$cacerts" -storepass changeit -alias ${junieCaAlias} >/dev/null 2>&1; then
+          echo "junieCorporateCa: ${junieCaAlias} already trusted in $cacerts" >&2
+        else
+          echo "junieCorporateCa: importing into $cacerts" >&2
+          ${keytool} -importcert -noprompt \
+            -alias ${junieCaAlias} \
+            -file "$companyCert" \
+            -keystore "$cacerts" \
+            -storepass changeit
+        fi
+      done
+    fi
+  '';
 
   brews = [
     "awscli"
