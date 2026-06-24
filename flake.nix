@@ -47,7 +47,7 @@
 
       mkDarwinSystem = { darwin, host }:
         darwin.lib.darwinSystem {
-          specialArgs = { inherit self; };
+          specialArgs = { inherit self username; };
           modules = [
             ./modules/darwin/configuration.nix
             ./hosts/${host}/configuration.nix
