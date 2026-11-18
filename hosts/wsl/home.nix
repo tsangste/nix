@@ -17,6 +17,10 @@
   ];
 
   programs.zsh.initContent = ''
+    if (( $+commands[kubectl] )); then
+      source <(kubectl completion zsh)
+    fi
+
     lens() {
       lens-desktop "$@" >/dev/null 2>&1 & disown
     }

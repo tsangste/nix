@@ -22,6 +22,10 @@
     initContent = ''
       PATH="/Users/${username}/Development/ssm-ssh-jumpbox/scripts:$PATH"
 
+      if (( $+commands[kubectl] )); then
+        source <(kubectl completion zsh)
+      fi
+
       eval "$(fnm env --use-on-cd --shell zsh)"
       eval "$(pyenv virtualenv-init -)"
     '';
