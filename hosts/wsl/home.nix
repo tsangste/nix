@@ -21,6 +21,11 @@
       source <(kubectl completion zsh)
     fi
 
+    if (( $+commands[aws_completer] )); then
+      autoload -Uz bashcompinit && bashcompinit
+      complete -C aws_completer aws
+    fi
+
     lens() {
       lens-desktop "$@" >/dev/null 2>&1 & disown
     }
