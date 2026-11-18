@@ -31,6 +31,10 @@ in
           echo "junieCorporateCa: ${junieCaAlias} already trusted in $cacerts" >&2
         else
           echo "junieCorporateCa: importing into $cacerts" >&2
+          # Junie tags the downloaded runtime with com.apple.provenance.
+          # darwin-rebuild runs as root, and macOS then refuses keytool's
+          # in-place rewrite: "Operation not permitted".
+          /usr/bin/xattr -d com.apple.provenance "$cacerts" 2>/dev/null || true
           ${keytool} -importcert -noprompt \
             -alias ${junieCaAlias} \
             -file "$companyCert" \
