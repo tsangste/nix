@@ -51,6 +51,7 @@ in
     "fnm"
     "gh"
     "helm"
+    "istioctl"
     "junie"
     "kubectl"
     "pango"
@@ -61,6 +62,7 @@ in
     "python-setuptools"
     "pipenv"
     "tilt"
+    "uv"
     "yarn"
     "yq"
   ];
