@@ -73,4 +73,11 @@ in
     "session-manager-plugin"
     "Tuple"
   ];
+
+  # cleanup = "zap" uninstalls every Mac App Store app missing from the Brewfile.
+  # These are installed outside Homebrew and owned by root, so mas uninstall
+  # fails when it cannot chown them.
+  masApps = {
+    "Microsoft PowerPoint" = 462062816;
+  };
 }
