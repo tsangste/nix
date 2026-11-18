@@ -68,6 +68,7 @@ with lib;
           "rectangle"
         ] ++ config.casks;
       masApps = {
+        "1Password for Safari" = 1569813296;
         "Maccy" = 1527619437;
         "Xcode" = 497799835;
       } // config.masApps;

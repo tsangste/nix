@@ -31,6 +31,10 @@ in
           echo "junieCorporateCa: ${junieCaAlias} already trusted in $cacerts" >&2
         else
           echo "junieCorporateCa: importing into $cacerts" >&2
+          # Junie tags the downloaded runtime with com.apple.provenance.
+          # darwin-rebuild runs as root, and macOS then refuses keytool's
+          # in-place rewrite: "Operation not permitted".
+          /usr/bin/xattr -d com.apple.provenance "$cacerts" 2>/dev/null || true
           ${keytool} -importcert -noprompt \
             -alias ${junieCaAlias} \
             -file "$companyCert" \
@@ -51,6 +55,7 @@ in
     "fnm"
     "gh"
     "helm"
+    "istioctl"
     "junie"
     "kubectl"
     "pango"
@@ -61,6 +66,7 @@ in
     "python-setuptools"
     "pipenv"
     "tilt"
+    "uv"
     "yarn"
     "yq"
   ];
@@ -71,4 +77,11 @@ in
     "session-manager-plugin"
     "Tuple"
   ];
+
+  # cleanup = "zap" uninstalls every Mac App Store app missing from the Brewfile.
+  # These are installed outside Homebrew and owned by root, so mas uninstall
+  # fails when it cannot chown them.
+  masApps = {
+    "Microsoft PowerPoint" = 462062816;
+  };
 }
