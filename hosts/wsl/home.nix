@@ -4,9 +4,15 @@
   imports = [
     ../../modules/home-manager/common.nix
     ../../modules/nixos/home-manager.nix
+    ../../modules/home-manager/aws.nix
     ../../modules/home-manager/fnm.nix
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/zsh.nix
+  ];
+
+  home.packages = [
+    pkgs.awscli2
+    pkgs.kubectl
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
