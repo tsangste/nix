@@ -16,6 +16,12 @@
     pkgs.lens
   ];
 
+  programs.zsh.initContent = ''
+    lens() {
+      lens-desktop "$@" >/dev/null 2>&1 & disown
+    }
+  '';
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.homeDirectory = "/home/${username}";
